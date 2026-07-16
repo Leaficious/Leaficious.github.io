@@ -1,0 +1,180 @@
+/* ============================================================
+   Leaficious — styles.css
+   Design direction: "Greenhouse" (dark by default, light toggle)
+   You normally DON'T need to touch this file to change words or
+   projects — edit content.js instead. This is the look & layout.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   DESIGN TOKENS
+   Light values are the base; [data-theme="dark"] overrides them.
+   The page defaults to dark (set on <html> in index.html).
+   ------------------------------------------------------------ */
+:root{
+  --paper:   #FBFAF3;  /* background */
+  --ink:     #1E3A2B;  /* primary text */
+  --leaf:    #4C9A5A;  /* fresh green — accent */
+  --leaf-dk: #2F7042;  /* darker leaf */
+  --petal:   #F28FA5;  /* florr.io petal pink */
+  --sun:     #F5C24B;  /* warm highlight */
+  --line:    #E3E0D3;  /* hairlines / borders */
+  --card:    #FFFFFF;  /* card surface */
+  --lead:    #3A5344;  /* hero sub-text */
+  --muted:   #526A5A;  /* secondary text */
+  --sprout:  #5E7166;  /* faint text (darkened so it stays readable on light) */
+  --label:   #2F7042;  /* small green labels / eyebrows — readable on light */
+  --url:     #2F7042;  /* project link path text — readable on light */
+  --badge-bg:#ECF6EE;  /* live badge background */
+  --connect-bg:  #1E3A2B;
+  --connect-tx:  #FBFAF3;
+  --connect-sub: #CFE0D4;
+}
+:root[data-theme="dark"]{
+  --paper:   #131A15;  /* evening greenhouse / soil */
+  --ink:     #EAF2EA;
+  --leaf:    #6FBF7F;
+  --leaf-dk: #8CD69A;
+  --petal:   #F4A0B2;
+  --sun:     #F5C24B;
+  --line:    #28352C;
+  --card:    #1C2620;
+  --lead:    #B9CBBD;
+  --muted:   #93A79A;
+  --sprout:  #7F9384;
+  --label:   #6FBF7F;  /* labels stay bright-green on dark */
+  --url:     #F4A0B2;  /* keep the petal-pink link colour on dark */
+  --badge-bg:rgba(111,191,127,.16);
+  --connect-bg:  #1C2620;  /* elevated surface so the panel keeps its shape on dark */
+  --connect-tx:  #EAF2EA;
+  --connect-sub: #9DB6A6;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Nunito Sans", system-ui, sans-serif; font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  transition:background .3s ease, color .3s ease;
+}
+a{ color:inherit; }
+.wrap{ max-width:980px; margin-inline:auto; padding-inline:24px; }
+
+.eyebrow{
+  font-family:"Space Mono", monospace; font-size:12px; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--label);
+}
+
+/* ------------------------------------------------------------
+   THEME TOGGLE (top-right)
+   ------------------------------------------------------------ */
+.theme-toggle{
+  position:fixed; top:18px; right:18px; z-index:100;
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--card); color:var(--ink); border:1px solid var(--line);
+  border-radius:999px; padding:8px 14px; cursor:pointer;
+  font-family:"Space Mono", monospace; font-size:12px; letter-spacing:.05em;
+  transition:transform .15s ease, border-color .15s ease;
+}
+.theme-toggle:hover{ transform:translateY(-1px); border-color:var(--leaf); }
+.theme-toggle:focus-visible{ outline:3px solid var(--leaf); outline-offset:2px; }
+.theme-toggle svg{ width:15px; height:15px; }
+
+/* ------------------------------------------------------------
+   SIGNATURE: a dashed vine runs down the page, leaves at nodes
+   ------------------------------------------------------------ */
+.stem{ position:relative; }
+.stem::before{
+  content:""; position:absolute; left:11px; top:8px; bottom:8px;
+  width:2px; background:repeating-linear-gradient(var(--leaf) 0 8px, transparent 8px 16px);
+  opacity:.5;
+}
+.node{ position:relative; padding-left:44px; }
+.node::before{  /* leaf marker */
+  content:""; position:absolute; left:0; top:6px; width:24px; height:24px;
+  background:var(--leaf); border-radius:0 50% 50% 50%; transform:rotate(45deg);
+}
+
+/* ------------------------------------------------------------
+   HERO
+   ------------------------------------------------------------ */
+header.hero{ padding:72px 0 40px; }
+.hi{ font-family:"Space Mono", monospace; font-size:13px; color:var(--label); letter-spacing:.1em; }
+h1{
+  font-family:"Fraunces", Georgia, serif; font-weight:900; font-optical-sizing:auto;
+  font-size:clamp(44px, 9vw, 104px); line-height:.95; letter-spacing:-.02em; margin:10px 0 20px;
+  overflow-wrap:break-word;  /* let a long title/word wrap instead of overflowing narrow screens */
+}
+h1 .wig{ /* hand-drawn wavy underline under the accent word */
+  display:inline-block;  /* so the padding below reserves real space and the squiggle can't overlap the paragraph */
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='12' viewBox='0 0 120 12'%3E%3Cpath d='M2 8 Q 15 2 30 7 T 60 7 T 90 7 T 118 6' stroke='%23F28FA5' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:repeat-x; background-position:bottom; background-size:120px 12px; padding-bottom:10px;
+}
+.lead{ font-size:20px; max-width:52ch; color:var(--lead); }
+.lead b{ color:var(--ink); }
+
+/* ------------------------------------------------------------
+   SECTION SHELL
+   ------------------------------------------------------------ */
+section{ padding:44px 0; }
+h2{
+  font-family:"Fraunces", Georgia, serif; font-weight:600; font-size:clamp(28px,4vw,40px);
+  letter-spacing:-.01em; margin:6px 0 24px;
+}
+
+/* ---- Projects: leaf-shaped cards ---- */
+.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr)); gap:18px; }
+.leaf-card{
+  display:block; text-decoration:none; background:var(--card); border:1px solid var(--line);
+  border-radius:4px 20px 20px 20px;  /* one sharp corner = leaf tip */
+  padding:22px; position:relative; overflow:hidden;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.leaf-card::after{ /* faint center vein */
+  content:""; position:absolute; top:20px; bottom:20px; right:22px; width:1px;
+  background:linear-gradient(var(--line), transparent);
+}
+.leaf-card:hover{ transform:translateY(-4px); box-shadow:0 12px 28px rgba(0,0,0,.18); border-color:var(--leaf); }
+.leaf-card:focus-visible{ outline:3px solid var(--leaf); outline-offset:2px; }
+.leaf-card h3{ font-family:"Fraunces", Georgia, serif; font-weight:600; font-size:22px; margin-bottom:4px; color:var(--ink); overflow-wrap:break-word; }
+.leaf-card p{ font-size:15px; color:var(--muted); }
+.badge{
+  display:inline-flex; align-items:center; gap:6px; font-family:"Space Mono", monospace;
+  font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  background:var(--badge-bg); color:var(--leaf-dk); padding:4px 9px; border-radius:999px; margin-bottom:12px;
+}
+.badge.live::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--leaf); }
+.url{ font-family:"Space Mono", monospace; font-size:12px; color:var(--url); margin-top:12px; display:block; overflow-wrap:break-word; }
+.sprout{
+  border-style:dashed; background:transparent; display:flex; flex-direction:column;
+  justify-content:center; align-items:center; text-align:center; color:var(--sprout);
+}
+.sprout .sprout-mark{ width:30px; height:30px; color:var(--leaf); margin-bottom:6px; }
+
+/* ---- Games: playful chips ---- */
+.chips{ display:flex; flex-wrap:wrap; gap:12px; }
+.chip{
+  display:inline-flex; align-items:center; gap:10px; background:var(--card);
+  border:1px solid var(--line); border-radius:999px; padding:10px 18px 10px 12px;
+  font-weight:700; color:var(--ink); text-decoration:none; transition:transform .15s ease, border-color .15s ease;
+}
+.chip:hover{ transform:translateY(-2px) rotate(-1deg); border-color:var(--leaf); }
+.chip:focus-visible{ outline:3px solid var(--leaf); outline-offset:2px; }
+.dot{ width:26px; height:26px; border-radius:50%; display:grid; place-items:center; flex:none; }
+.dot svg{ width:15px; height:15px; }
+
+/* ---- Connect ---- */
+.connect{ background:var(--connect-bg); color:var(--connect-tx); border:1px solid var(--line); border-radius:24px; padding:40px; margin-top:12px; }
+.connect h2{ color:var(--connect-tx); margin-top:0; }
+.connect .eyebrow{ color:var(--sun); }
+.connect p{ color:var(--connect-sub); max-width:46ch; }
+.discord-pill{
+  display:inline-flex; align-items:center; gap:10px; background:var(--petal); color:#3a1622;
+  font-weight:700; padding:14px 24px; border-radius:999px; margin-top:14px;
+}
+.discord-pill svg{ width:20px; height:20px; }
+
+footer{ padding:40px 0 64px; color:var(--sprout); font-family:"Space Mono", monospace; font-size:13px; }
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce){ *{ transition:none !important; scroll-behavior:auto; } }

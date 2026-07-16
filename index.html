@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leaficious</title>
+  <meta name="description" content="Leaficious — a little corner of the internet for random projects and the games I'm into.">
+
+  <!-- Apply saved theme before paint so there's no flash (default: dark) -->
+  <script>
+    (function(){
+      try{ var t = localStorage.getItem('leaf-theme'); if(t){ document.documentElement.setAttribute('data-theme', t); } }
+      catch(e){}
+    })();
+  </script>
+
+  <!-- Fonts: Fraunces (display) + Nunito Sans (body) + Space Mono (labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Nunito+Sans:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+  <!-- Light / dark toggle (filled in by main.js) -->
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme"></button>
+
+  <!-- The whole page is built from content.js by main.js -->
+  <main class="wrap stem" id="app"></main>
+
+  <footer class="wrap" id="footer"></footer>
+
+  <!-- content first (the data), then the renderer -->
+  <script src="assets/content.js"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>
