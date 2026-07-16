@@ -37,7 +37,7 @@ const CONTENT = {
      `live: true` shows the green "Live" dot. Use false for a WIP. */
   projects: [
     {
-      title: "Weather",
+      title: "Aloft",
       desc:  "A little app to check the weather. My first thing planted here.",
       slug:  "weather",
       live:  true,
